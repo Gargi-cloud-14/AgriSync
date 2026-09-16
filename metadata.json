@@ -1,0 +1,7 @@
+{
+  "name": "AgriSync",
+  "description": "Smart agriculture supply-chain network connecting farmers, storage providers, transporters, and buyers with real-time telemetry and regional geolocation.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
