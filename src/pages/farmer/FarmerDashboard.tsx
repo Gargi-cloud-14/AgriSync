@@ -26,6 +26,7 @@ import {
   X,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { FarmerTransportStorageSection } from '../../components/farmer/FarmerTransportStorageSection';
 
 export const FarmerDashboard: React.FC = () => {
   const [batches, setBatches] = useState<ProduceBatch[]>([]);
@@ -234,66 +235,8 @@ export const FarmerDashboard: React.FC = () => {
           </div>
         </Card>
 
-        {/* Available Cold Storage Facilities Near Nashik */}
-        <Card variant="default" padding="lg" className="bg-white border-stone-300 shadow-sm">
-          <div className="flex items-center justify-between pb-4 border-b border-stone-100">
-            <div>
-              <h3 className="text-lg font-bold font-heading text-stone-900">
-                Nearby Cold Storage Facilities
-              </h3>
-              <p className="text-xs text-stone-500">
-                Verified chambers ready to intake perishables within 25 km
-              </p>
-            </div>
-            <Link
-              to="/storage"
-              className="text-xs font-bold text-emerald-800 hover:underline flex items-center gap-1"
-            >
-              <span>Explore Storage Network</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            {facilities.map((fac) => (
-              <div
-                key={fac.id}
-                className="p-4 rounded-2xl bg-stone-50 border border-stone-200 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-stone-900">{fac.name}</span>
-                    <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">
-                      {fac.currentTempC}°C
-                    </span>
-                  </div>
-                  <p className="text-xs text-stone-500 mb-3">{fac.location}</p>
-                  <div className="text-xs text-stone-600 space-y-1">
-                    <div className="flex justify-between">
-                      <span>Available Capacity:</span>
-                      <strong className="text-stone-800">{fac.availableCapacityTons} Tons</strong>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Rate per Day:</span>
-                      <strong className="text-emerald-800">₹{fac.ratePerTonPerDay} / ton</strong>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-stone-200">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-xs"
-                    onClick={() => alert(`Space booking inquiry initiated for ${fac.name}. Direct coordination enabled.`)}
-                  >
-                    Book Space
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
+        {/* Interactive Smart Transport & Cold Storage Routing Section */}
+        <FarmerTransportStorageSection />
       </div>
 
       {/* Modal: Add Harvest Produce */}
