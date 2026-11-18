@@ -100,45 +100,73 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentRole }) => {
           </nav>
         </div>
 
-        {/* Rapid Role Switcher for 6-Member Team */}
+        {/* Rapid Role Switcher for Team Evaluation */}
         <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200/80">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-stone-700 mb-2">
-            Team Testing Switcher
-          </p>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-stone-700">
+              Team Testing Switcher
+            </p>
+            <span className="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded font-mono">
+              Live
+            </span>
+          </div>
           <div className="grid grid-cols-2 gap-1.5 text-[11px]">
             <button
+              type="button"
               onClick={() => switchRoleDemo('FARMER')}
-              className={`px-2 py-1.5 rounded text-left font-medium transition-colors ${
-                currentRole === 'FARMER' ? 'bg-emerald-700 text-white' : 'bg-white text-stone-700 hover:bg-stone-200/80 border border-stone-200'
+              className={`px-2 py-1.5 rounded text-left font-medium transition-all ${
+                currentRole === 'FARMER'
+                  ? 'bg-emerald-700 text-white font-bold shadow-2xs'
+                  : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200'
               }`}
             >
               🌾 Farmer
             </button>
             <button
+              type="button"
               onClick={() => switchRoleDemo('STORAGE_PROVIDER')}
-              className={`px-2 py-1.5 rounded text-left font-medium transition-colors ${
-                currentRole === 'STORAGE_PROVIDER' ? 'bg-emerald-700 text-white' : 'bg-white text-stone-700 hover:bg-stone-200/80 border border-stone-200'
+              className={`px-2 py-1.5 rounded text-left font-medium transition-all ${
+                currentRole === 'STORAGE_PROVIDER'
+                  ? 'bg-emerald-700 text-white font-bold shadow-2xs'
+                  : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200'
               }`}
             >
               📦 Storage
             </button>
             <button
+              type="button"
               onClick={() => switchRoleDemo('TRANSPORTER')}
-              className={`px-2 py-1.5 rounded text-left font-medium transition-colors ${
-                currentRole === 'TRANSPORTER' ? 'bg-emerald-700 text-white' : 'bg-white text-stone-700 hover:bg-stone-200/80 border border-stone-200'
+              className={`px-2 py-1.5 rounded text-left font-medium transition-all ${
+                currentRole === 'TRANSPORTER'
+                  ? 'bg-emerald-700 text-white font-bold shadow-2xs'
+                  : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200'
               }`}
             >
               🚚 Transport
             </button>
             <button
+              type="button"
               onClick={() => switchRoleDemo('BUYER')}
-              className={`px-2 py-1.5 rounded text-left font-medium transition-colors ${
-                currentRole === 'BUYER' ? 'bg-emerald-700 text-white' : 'bg-white text-stone-700 hover:bg-stone-200/80 border border-stone-200'
+              className={`px-2 py-1.5 rounded text-left font-medium transition-all ${
+                currentRole === 'BUYER'
+                  ? 'bg-emerald-700 text-white font-bold shadow-2xs'
+                  : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200'
               }`}
             >
               🏪 Buyer
             </button>
           </div>
+          <button
+            type="button"
+            onClick={() => switchRoleDemo('ADMIN')}
+            className={`w-full mt-1.5 px-2 py-1 rounded text-center text-[10px] font-medium transition-all ${
+              currentRole === 'ADMIN'
+                ? 'bg-stone-800 text-white font-bold shadow-2xs'
+                : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'
+            }`}
+          >
+            🛡️ Admin Governance
+          </button>
         </div>
 
         <div>

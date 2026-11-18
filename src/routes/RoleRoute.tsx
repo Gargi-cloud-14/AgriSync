@@ -47,7 +47,7 @@ export const RoleRoute: React.FC<RoleRouteProps> = ({ children, allowedRoles }) 
               Switch role instantly to test this module without logging out:
             </p>
             <button
-              onClick={() => switchRoleDemo(allowedRoles[0])}
+              onClick={() => switchRoleDemo(allowedRoles[0], false)}
               className="w-full py-2 px-3 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-medium rounded-lg transition-colors shadow-sm"
             >
               Switch Role to {ROLE_LABELS[allowedRoles[0]] || allowedRoles[0]}

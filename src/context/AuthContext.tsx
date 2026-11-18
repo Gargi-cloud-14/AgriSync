@@ -12,7 +12,7 @@ interface AuthContextType {
   login: (credentials: LoginCredentials) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
   logout: () => void;
-  switchRoleDemo: (role: UserRole) => void;
+  switchRoleDemo: (role: UserRole, navigateToDashboard?: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -79,15 +79,28 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   /**
    * Helper for student evaluation & UI role testing:
-   * Quickly switches active role context without needing manual registration
+   * Quickly switches active role context without needing manual registration.
+   * If navigateToDashboard is true (default), automatically routes to the new role's dashboard.
    */
-  const switchRoleDemo = (targetRole: UserRole) => {
+  const switchRoleDemo = (targetRole: UserRole, navigateToDashboard = true) => {
     const matched = demoUsers.find((u) => u.role === targetRole) || demoUsers[0];
     setUser(matched as User);
     const demoTkn = `demo-token-${targetRole.toLowerCase()}`;
     setToken(demoTkn);
     localStorage.setItem('agrisync_auth_token', demoTkn);
     localStorage.setItem('agrisync_auth_user', JSON.stringify(matched));
+
+    if (navigateToDashboard) {
+      const rolePathMap: Record<UserRole, string> = {
+        FARMER: '/farmer',
+        STORAGE_PROVIDER: '/storage',
+        TRANSPORTER: '/transporter',
+        BUYER: '/buyer',
+        ADMIN: '/admin',
+      };
+      const dest = rolePathMap[targetRole] || '/farmer';
+      window.location.href = dest;
+    }
   };
 
   return (

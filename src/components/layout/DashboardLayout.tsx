@@ -19,7 +19,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   subtitle,
   actionButton,
 }) => {
-  const { user, role } = useAuth();
+  const { user, role, switchRoleDemo } = useAuth();
   const activeRole = role || 'FARMER';
 
   return (
@@ -46,9 +46,38 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-1.5 text-xs text-stone-500 bg-stone-100/80 px-2.5 py-1 rounded-lg">
+            {/* Quick Role Switcher Pill in Header for Fast Team Testing */}
+            <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-xl border border-stone-200 text-xs">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 px-1.5 hidden sm:inline">
+                Role:
+              </span>
+              {(['FARMER', 'STORAGE_PROVIDER', 'TRANSPORTER', 'BUYER'] as const).map((r) => {
+                const labels: Record<string, string> = {
+                  FARMER: '🌾 Farmer',
+                  STORAGE_PROVIDER: '📦 Storage',
+                  TRANSPORTER: '🚚 Transport',
+                  BUYER: '🏪 Buyer',
+                };
+                const isActive = activeRole === r;
+                return (
+                  <button
+                    key={r}
+                    onClick={() => switchRoleDemo(r)}
+                    className={`px-2 py-1 rounded-lg font-medium text-[11px] transition-all ${
+                      isActive
+                        ? 'bg-emerald-800 text-white font-bold shadow-2xs'
+                        : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/70'
+                    }`}
+                  >
+                    {labels[r]}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="hidden lg:flex items-center gap-1.5 text-xs text-stone-500 bg-stone-100/80 px-2.5 py-1.5 rounded-lg border border-stone-200/60">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>AgriSync Network Verified</span>
+              <span>Verified</span>
             </div>
             <button
               className="p-2 rounded-xl text-stone-600 hover:bg-stone-100 relative"
