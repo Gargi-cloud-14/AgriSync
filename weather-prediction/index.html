@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSync | Weather Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">🌱</div>
+            <div>
+                <h2>AgriSync</h2>
+                <span>SMART AGRICULTURE</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+            <a href="#overview" class="nav-link active">⌂ Dashboard</a>
+            <a href="#weather" class="nav-link">☀ Weather</a>
+            <a href="#forecast" class="nav-link">▦ Forecast</a>
+            <a href="#prediction" class="nav-link">◈ Rainfall Analysis</a>
+            <a href="#dailyRisk" class="nav-link">📊 Daily Rainfall Risk</a>
+            <a href="#irrigation" class="nav-link">♧ Irrigation</a>
+            <a href="#transport" class="nav-link">🚛 Transport</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                Weather system active
+            </div>
+            <p>AgriSync Weather Intelligence</p>
+            <small>Weather & Prediction Module</small>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div>
+                <p class="top-label">AGRICULTURAL INTELLIGENCE</p>
+                <h2>Weather Dashboard</h2>
+            </div>
+
+            <div class="topbar-right">
+                <span class="live-indicator">
+                    <span class="status-dot"></span>
+                    Live Forecast
+                </span>
+                <div class="profile-icon">A</div>
+            </div>
+        </header>
+
+        <!-- OVERVIEW -->
+        <section id="overview" class="welcome-section">
+            <div>
+                <p class="section-eyebrow">WEATHER & PREDICTION</p>
+                <h1>Weather Intelligence for<br>
+                    <span>Smarter Agriculture.</span>
+                </h1>
+                <p class="welcome-description">
+                    Monitor weather, analyze rainfall and make
+                    smarter agricultural decisions.
+                </p>
+            </div>
+        </section>
+
+        <!-- LOCATION SEARCH -->
+        <section class="location-panel">
+            <div class="location-heading">
+                <div>
+                    <span class="section-eyebrow">LOCATION MONITORING</span>
+                    <h3>Explore Weather Conditions</h3>
+                </div>
+                <span class="location-icon">📍</span>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Enter city name..."
+                    value="Bhopal"
+                >
+                <button id="searchBtn">Search Weather ↗</button>
+            </div>
+
+            <p id="status">Loading weather information...</p>
+        </section>
+
+        <!-- CURRENT WEATHER -->
+        <section id="weather" class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">LIVE CONDITIONS</span>
+                    <h2>Current Weather</h2>
+                </div>
+                <span class="section-tag">LIVE DATA</span>
+            </div>
+
+            <div class="weather-result premium-weather">
+                <div class="weather-main">
+                    <h2 id="cityName">Search for a city</h2>
+                    <h1 id="temperature">-- °C</h1>
+                    <p>Current temperature</p>
+                </div>
+
+                <div class="weather-stats">
+                    <div class="stat-card">
+                        <span>💧</span>
+                        <p>Humidity</p>
+                        <strong id="humidity">Humidity: --</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>🌧️</span>
+                        <p>Precipitation</p>
+                        <strong id="rainfall">Current precipitation: --</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>☁️</span>
+                        <p>Rain Probability</p>
+                        <strong id="rainChance">Today's rain probability: --</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>💨</span>
+                        <p>Wind Speed</p>
+                        <strong id="wind">Wind speed: --</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORECAST -->
+        <section id="forecast" class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">UPCOMING CONDITIONS</span>
+                    <h2>7-Day Weather Forecast</h2>
+                </div>
+                <span class="section-tag">7 DAYS</span>
+            </div>
+
+            <div id="forecastContainer" class="forecast-grid">
+                <p>Waiting for forecast...</p>
+            </div>
+        </section>
+
+        <!-- RAINFALL CHART -->
+        <section class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">WEATHER ANALYTICS</span>
+                    <h2>Weekly Rainfall Analysis</h2>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="rainfallChart"></canvas>
+            </div>
+        </section>
+
+        <!-- RAINFALL PREDICTION -->
+        <section id="prediction" class="dashboard-section prediction-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">PREDICTIVE INTELLIGENCE</span>
+                    <h2>Rainfall Prediction & Analysis</h2>
+                </div>
+                <span class="section-tag">FORECAST ANALYSIS</span>
+            </div>
+
+            <div class="prediction-grid">
+                <div class="prediction-card">
+                    <span>🌧️</span>
+                    <h3>Weekly Rainfall</h3>
+                    <h2 id="weeklyRainfall">-- mm</h2>
+                    <p>Total forecast rainfall</p>
+                </div>
+
+                <div class="prediction-card">
+                    <span>📅</span>
+                    <h3>Rainy Days</h3>
+                    <h2 id="rainyDays">--</h2>
+                    <p>Days with expected rain</p>
+                </div>
+
+                <div class="prediction-card">
+                    <span>◈</span>
+                    <h3>Rainfall Risk</h3>
+                    <h2 id="rainfallRisk">--</h2>
+                    <p>Based on forecast data</p>
+                </div>
+            </div>
+
+            <div id="predictionSummary" class="prediction-summary">
+                Search for a city to analyze rainfall.
+            </div>
+
+            <div class="alert-box" id="rainAlert">
+                <h3>🔔 Weather Alerts</h3>
+                <p id="rainAlertMessage">
+                    No weather analysis available yet.
+                </p>
+            </div>
+        </section>
+
+        <!-- DAILY RAINFALL RISK -->
+        <section id="dailyRisk" class="dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">7-DAY PREDICTION</span>
+                    <h2>Daily Rainfall Risk Forecast</h2>
+                </div>
+                <span class="section-tag">RISK MONITORING</span>
+            </div>
+
+            <div id="dailyRainfallPrediction" class="rainfall-prediction-list">
+                <p>Search for a city to view daily rainfall predictions.</p>
+            </div>
+        </section>
+
+        <!-- IRRIGATION -->
+        <section id="irrigation" class="dashboard-section irrigation-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">SMART FARMING</span>
+                    <h2>Smart Irrigation Advisor</h2>
+                </div>
+                <span class="section-tag">AI-ASSISTED</span>
+            </div>
+
+            <div id="irrigationResult" class="irrigation-card">
+                <h3 id="irrigationStatus">
+                    Waiting for weather data...
+                </h3>
+
+                <p id="irrigationMessage">
+                    Search for a city to receive irrigation advice.
+                </p>
+
+                <div class="irrigation-details">
+                    <p id="irrigationRain">Expected Rainfall: --</p>
+                    <p id="irrigationProbability">Rain Probability: --</p>
+                    <p id="irrigationTemperature">Temperature: --</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSPORT -->
+        <section id="transport" class="dashboard-section transport-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">LOGISTICS INTELLIGENCE</span>
+                    <h2>Transport Weather Advisor</h2>
+                </div>
+                <span class="section-tag">WEATHER RISK</span>
+            </div>
+
+            <div id="transportResult" class="transport-card">
+                <h3 id="transportStatus">
+                    Waiting for weather data...
+                </h3>
+
+                <p id="transportMessage">
+                    Search for a city to receive transport advice.
+                </p>
+
+                <div class="transport-details">
+                    <p id="transportRain">Expected Rainfall: --</p>
+                    <p id="transportProbability">Rain Probability: --</p>
+                    <p id="transportWind">Wind Speed: --</p>
+                </div>
+
+                <div class="transport-action">
+                    <h3>Recommended Action</h3>
+                    <p id="transportRecommendation">
+                        Waiting for weather analysis...
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            <div class="brand-footer">🌱 AgriSync</div>
+            <p>Weather Intelligence for Smarter Agriculture</p>
+            <small>Weather data powered by Open-Meteo</small>
+        </footer>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
